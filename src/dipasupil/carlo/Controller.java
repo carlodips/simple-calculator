@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import javax.swing.*;
 
 
 public class Controller {
@@ -20,7 +21,6 @@ public class Controller {
     ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
     String input = "";
-    int answer = 0;
 
     public void pressNumber1(ActionEvent event){
         System.out.println("You pressed 1");
@@ -91,12 +91,13 @@ public class Controller {
         System.out.println("You pressed /");
         input = input + "/";
         inputArea.setText(input);
-
     }
     public void pressDelete(ActionEvent event){
         System.out.println("You pressed Del");
-        input = input.substring(0, input.length() - 1);
-        inputArea.setText(input);
+        if(input.length()>0){
+            input = input.substring(0, input.length() - 1);
+            inputArea.setText(input);
+        }
     }
     public void pressClear(ActionEvent event){
         System.out.println("You pressed Clear");
@@ -112,8 +113,20 @@ public class Controller {
         answerArea.setText(answer);
         input = answer;
         inputArea.clear();
-
     }
+
+    public void pressDecimalPoint(ActionEvent event){
+        System.out.println("You pressed .");
+        input = input + ".";
+        inputArea.setText(input);
+    }
+
+    public void pressAnswer(ActionEvent event){
+        System.out.println("You pressed ANS");
+        input = input + answerArea.getText();
+        inputArea.setText(input);
+    }
+
 
 
 
